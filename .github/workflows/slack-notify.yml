@@ -1,0 +1,28 @@
+name: Cypress Slack notify
+on:
+  workflow_dispatch:
+
+jobs:
+  cypress-test:
+    name: Run on Chrome 89
+    runs-on: ubuntu-18.04
+    container: cypress/browsers:node14.16.0-chrome89-ff86
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Cypress with a clean slate
+        run: |
+          npm ci
+          $(npm bin)/cypress cache path
+          $(npm bin)/cypress cache list
+          $(npm bin)/cypress verify
+
+      - name: Run Cypress tests
+        run: npm run cy:run
+
+      - name: Slack notification with cypress-slack-reporter
+        if: always()
+        env: 
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          npx cypress-slack-reporter --report-dir mochawesome-report --ci-provider none
