@@ -1,5 +1,7 @@
 # cypress-slack-reporter-gh-actions
 
+Achieved with the support of https://github.com/YOU54F/cypress-slack-reporter creator.
+
 # Slack Webhook
 Create a Slack Incoming Webhook
 
