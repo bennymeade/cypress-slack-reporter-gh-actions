@@ -3,7 +3,7 @@
     "cy:run": "npx cypress run --browser chrome --headless"
   },
   "devDependencies": {
-    "cypress": "^7.3.0",
+    "cypress": "9.7.0",
     "cypress-multi-reporters": "^1.5.0",
     "cypress-slack-reporter": "^1.2.1",
     "mochawesome": "^6.2.2",
